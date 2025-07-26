@@ -1,0 +1,385 @@
+:root {
+    --primary-color: #007bff; /* Vibrant Blue */
+    --secondary-color: #6c757d; /* Subtle Grey */
+    --accent-color: #28a745; /* Success Green */
+    --background-light: #f8f9fa;
+    --background-dark: #e9ecef;
+    --text-dark: #212529;
+    --text-light: #fefefe;
+    --border-color: #dee2e6;
+    --card-background: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --hover-transition: all 0.2s ease-in-out;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--background-light) 0%, var(--background-dark) 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.app-container {
+    max-width: 680px;
+    width: 100%;
+    background: var(--card-background);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px var(--shadow-medium);
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    transition: var(--hover-transition);
+    animation: slideInUp 0.6s ease-out forwards;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        align-items: flex-start;
+    }
+    .app-container {
+        margin: 0;
+        padding: 25px;
+        gap: 20px;
+    }
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.app-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.app-header .subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+    color: var(--secondary-color);
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Slightly reduced gap */
+    margin-bottom: 25px; /* More space after navigation */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1rem; /* Slightly smaller font for more links */
+    padding: 10px 18px;
+    border-radius: 25px; /* Pill shape */
+    transition: var(--hover-transition);
+    border: 1px solid var(--border-color); /* Subtle border for definition */
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--background-dark);
+    border-color: var(--primary-color);
+}
+
+.nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    border-color: var(--primary-color);
+}
+
+.nav-link.active:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.instruction {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 16px 45px 16px 20px;
+    font-size: 1.15rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    outline: none;
+    transition: var(--hover-transition);
+    font-weight: 400;
+    color: var(--text-dark);
+    background-color: var(--card-background);
+}
+
+input[type="text"]::placeholder {
+    color: var(--secondary-color);
+    opacity: 0.7;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.clear-button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--hover-transition);
+}
+
+.clear-button.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.clear-button:hover {
+    color: var(--primary-color);
+}
+
+
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    padding: 18px 20px;
+    background: var(--background-light);
+    border-left: 6px solid var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    animation: fadeIn 0.4s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: var(--hover-transition);
+    position: relative; /* For absolute positioning of buttons */
+    overflow: hidden; /* To contain button animations */
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--shadow-medium);
+}
+
+.card .pidgin {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    padding-right: 60px; /* Space for buttons */
+}
+
+.card .english {
+    color: var(--secondary-color);
+    font-size: 1.05rem;
+    font-weight: 400;
+    padding-right: 60px; /* Space for buttons */
+}
+
+/* Action buttons on cards */
+.card-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    opacity: 0; /* Hidden by default */
+    transform: translateX(20px); /* Slide in from right */
+    transition: all 0.3s ease-out;
+}
+
+.card:hover .card-actions,
+.word-of-day-section .word-card .card-actions { /* Always visible for WOTD */
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px; /* Bigger touch target */
+    border-radius: 50%; /* Circle shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    transition: var(--hover-transition);
+}
+
+.action-button:hover {
+    background-color: var(--background-dark);
+    color: var(--primary-color);
+}
+
+.action-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.favorite-button.active svg {
+    fill: #ff4500; /* Orange-red for active heart */
+    stroke: #ff4500;
+    animation: pulse 0.3s ease-in-out;
+}
+
+.no-results {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    padding: 20px;
+    background: var(--background-light);
+    border-radius: 10px;
+    font-weight: 500;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.app-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.app-footer p {
+    margin: 0;
+}
+
+/* Word of the Day Styling */
+.word-of-day-section {
+    background: linear-gradient(45deg, #e0f2f7, #c7e9f3); /* Soft gradient background */
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    animation: fadeIn 0.5s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.word-of-day-section h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.word-of-day-section .word-card {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    border-left: 5px solid var(--accent-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.word-of-day-section .pidgin-word {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    padding-right: 60px;
+}
+
+.word-of-day-section .english-translation {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding-right: 60px;
+}
+
+/* View Mode Specific Styles */
+.search-box.hidden,
+.results.hidden {
+    display: none;
+}
+.word-of-day-section.hidden {
+    display: none;
+}
+
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Optional: Scrollbar styling for a cleaner look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-light);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}

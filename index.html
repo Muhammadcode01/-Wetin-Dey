@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetin Dey? Pidgin-English Translator & Dictionary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇳🇬</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>🇳🇬 Wetin Dey?</h1>
+            <p class="subtitle">Your Go-To Pidgin-English Dictionary & Translator</p>
+            <nav class="main-nav">
+                <a href="#" class="nav-link active" data-view="search-mode" id="searchModeLink">Search & Translate</a>
+                <a href="#" class="nav-link" data-view="browse-mode" id="browseModeLink">Browse Dictionary</a>
+                <a href="#" class="nav-link" data-view="favorites-mode" id="favoritesModeLink">My Favorites</a>
+            </nav>
+        </header>
+
+        <main class="app-content">
+            <section class="word-of-day-section" id="wordOfTheDaySection">
+                <h2>Word of the Day!</h2>
+                <div class="word-card">
+                    <div class="pidgin-word" id="wotd-pidgin"></div>
+                    <div class="english-translation" id="wotd-english"></div>
+                    <div class="card-actions">
+                        <button class="action-button play-button" aria-label="Play pronunciation" data-word-to-speak="" data-lang="pidgin-en">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M23.31 1.69a16 16 0 0 1 0 22.62"></path></svg>
+                        </button>
+                        <button class="action-button favorite-button" aria-label="Add to favorites">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <p class="instruction" id="instructionText">Enter a word or phrase in **Pidgin** or **English** to search.</p>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="E.g., 'how far' or 'please'"
+                    autocomplete="off"
+                    aria-label="Search for Pidgin or English words"
+                />
+                <button id="clearSearch" class="clear-button" aria-label="Clear search input">×</button>
+            </div>
+
+            <div class="results" id="results"></div>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; <span id="currentYear"></span> Wetin Dey? All rights reserved.</p>
+            <p>Made with ❤️ for the culture.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
